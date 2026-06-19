@@ -8,16 +8,10 @@ import { pick, randInt, type Rng } from './rng'
 
 const CARGO_KINDS = Object.keys(CARGO_VALUE) as CargoKind[]
 
-let jobCounter = 0
-function nextJobId(): JobIdSeed {
-  jobCounter += 1
-  return `job-${jobCounter}-${Math.random().toString(36).slice(2, 8)}`
-}
-type JobIdSeed = string
-
 /**
  * Generate `count` jobs at `origin`, each destined for a random OTHER unlocked town.
- * Payout scales with distance and cargo value.
+ * Payout scales with distance and cargo value. IDs are deterministic from origin + index so a
+ * seeded new game is fully reproducible.
  */
 export function generateJobs(
   origin: Town,
@@ -34,7 +28,7 @@ export function generateJobs(
     const kind = pick(rng, CARGO_KINDS)
     const dist = distanceUnits(origin, dest)
     jobs.push({
-      id: nextJobId(),
+      id: `job-${origin.id}-${i}-${dest.id}-${kind}`,
       kind,
       destination: dest.id,
       payout: jobPayout(dist, kind),

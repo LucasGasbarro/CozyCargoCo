@@ -15,7 +15,7 @@
  */
 window.KANBAN_META = {
   project: "Cozy Cargo Co. — MVP",
-  updatedAt: "2026-06-19T12:20:00-03:00",
+  updatedAt: "2026-06-19T12:27:00-03:00",
 };
 
 window.KANBAN_TASKS = [
@@ -88,11 +88,11 @@ window.KANBAN_TASKS = [
     description: "Spend coins to unlock a reachable town and open its jobs." },
 
   // ── M7 · Content ──────────────────────────────────────────────
-  { id: "content-towns", title: "Design ~8 towns", milestone: "M7 · Content", status: "todo", etaMinutes: 30, startedAt: null,
+  { id: "content-towns", title: "Design ~8 towns", milestone: "M7 · Content", status: "done", etaMinutes: 30, startedAt: "2026-06-19T12:21:00-03:00",
     description: "Original cozy town names + map coordinates for the starter region." },
-  { id: "content-trains", title: "Design 2–3 trains", milestone: "M7 · Content", status: "todo", etaMinutes: 20, startedAt: null,
+  { id: "content-trains", title: "Design 2–3 trains", milestone: "M7 · Content", status: "done", etaMinutes: 20, startedAt: "2026-06-19T12:21:00-03:00",
     description: "Original train names with speed and car-slot stats." },
-  { id: "content-cargo", title: "Design 4–6 cargo types", milestone: "M7 · Content", status: "todo", etaMinutes: 20, startedAt: null,
+  { id: "content-cargo", title: "Design 4–6 cargo types", milestone: "M7 · Content", status: "done", etaMinutes: 20, startedAt: "2026-06-19T12:21:00-03:00",
     description: "Original cargo types with relative value for payout formulas." },
 
   // ── M8 · Audio ────────────────────────────────────────────────
