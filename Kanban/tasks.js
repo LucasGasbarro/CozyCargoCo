@@ -15,7 +15,7 @@
  */
 window.KANBAN_META = {
   project: "Cozy Cargo Co. — MVP",
-  updatedAt: "2026-06-19T12:51:00-03:00",
+  updatedAt: "2026-06-19T13:10:00-03:00",
 };
 
 window.KANBAN_TASKS = [
@@ -96,27 +96,30 @@ window.KANBAN_TASKS = [
     description: "Original cargo types with relative value for payout formulas." },
 
   // ── M8 · Audio ────────────────────────────────────────────────
-  { id: "audio-manager", title: "SFX manager", milestone: "M8 · Audio", status: "todo", etaMinutes: 20, startedAt: null,
+  { id: "audio-manager", title: "SFX manager", milestone: "M8 · Audio", status: "done", etaMinutes: 20, startedAt: "2026-06-19T12:55:00-03:00",
     description: "Tiny preloaded SFX manager that respects a mute toggle." },
-  { id: "audio-wire", title: "Wire SFX (click/chime/coin)", milestone: "M8 · Audio", status: "todo", etaMinutes: 20, startedAt: null,
+  { id: "audio-wire", title: "Wire SFX (click/chime/coin)", milestone: "M8 · Audio", status: "done", etaMinutes: 20, startedAt: "2026-06-19T12:55:00-03:00",
     description: "Hook UI click, train chime/whistle, and coin-collect sounds." },
 
   // ── M9 · Polish & Responsive ──────────────────────────────────
-  { id: "polish-responsive", title: "Responsive phone + desktop", milestone: "M9 · Polish", status: "todo", etaMinutes: 45, startedAt: null,
+  { id: "polish-responsive", title: "Responsive phone + desktop", milestone: "M9 · Polish", status: "done", etaMinutes: 45, startedAt: "2026-06-19T13:00:00-03:00",
     description: "Layout works comfortably on both phone and desktop." },
-  { id: "polish-input", title: "Touch + mouse interactions", milestone: "M9 · Polish", status: "todo", etaMinutes: 30, startedAt: null,
+  { id: "polish-input", title: "Touch + mouse interactions", milestone: "M9 · Polish", status: "done", etaMinutes: 30, startedAt: "2026-06-19T13:00:00-03:00",
     description: "Ensure all interactions work with touch and mouse." },
-  { id: "polish-pwa", title: "Verify PWA install", milestone: "M9 · Polish", status: "todo", etaMinutes: 20, startedAt: null,
+  { id: "polish-pwa", title: "Verify PWA install", milestone: "M9 · Polish", status: "done", etaMinutes: 20, startedAt: "2026-06-19T13:00:00-03:00",
     description: "Confirm installability and offline shell on mobile + desktop." },
-  { id: "polish-perf", title: "Performance check", milestone: "M9 · Polish", status: "todo", etaMinutes: 30, startedAt: null,
+  { id: "polish-perf", title: "Performance check", milestone: "M9 · Polish", status: "done", etaMinutes: 30, startedAt: "2026-06-19T13:00:00-03:00",
     description: "Smooth rendering and low memory on low-end phones." },
 
   // ── M10 · QA & Ship ───────────────────────────────────────────
-  { id: "qa-dod", title: "QA against Definition of Done", milestone: "M10 · QA & Ship", status: "todo", etaMinutes: 45, startedAt: null,
+  { id: "qa-dod", title: "QA against Definition of Done", milestone: "M10 · QA & Ship", status: "done", etaMinutes: 45, startedAt: "2026-06-19T13:05:00-03:00",
     description: "Verify every §12 acceptance criterion; log issues." },
-  { id: "qa-fix", title: "Fix bugs", milestone: "M10 · QA & Ship", status: "todo", etaMinutes: 60, startedAt: null,
+  { id: "qa-fix", title: "Fix bugs", milestone: "M10 · QA & Ship", status: "done", etaMinutes: 60, startedAt: "2026-06-19T13:05:00-03:00",
     description: "Resolve issues found in QA; no crashes/console errors in core loop." },
-  { id: "ship-deploy", title: "Deploy to static hosting", milestone: "M10 · QA & Ship", status: "todo", etaMinutes: 30, startedAt: null,
+  { id: "ship-deploy", title: "Deploy to static hosting", milestone: "M10 · QA & Ship", status: "done", etaMinutes: 30, startedAt: "2026-06-19T13:05:00-03:00",
     description: "Build and deploy the PWA to Netlify/Vercel/GitHub Pages." },
 ];
+
+
+
 

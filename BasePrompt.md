@@ -291,7 +291,9 @@ reference text above where they conflict):
 - **Art assets:** start with **free/open-source pixel-art packs** (Kenney.nl, itch.io CC0, etc.)
   as placeholders for the MVP; polish/replace with custom art later. Track asset licenses.
 - **Audio:** **light SFX only** for the MVP (UI clicks, train chime/whistle, coin-collect).
-  Background music deferred to a later phase.
+  Background music deferred to a later phase. **Implementation:** synthesised **procedurally with the
+  Web Audio API** (no audio files / no licensing), matching our procedural canvas art; gentle, with a
+  persisted mute toggle.
 - **Persistence:** **local-only first** — game state saved in the browser (no accounts/server).
   Fully playable offline. Cloud account sync deferred to a later phase.
 - **Monetization:** **none in the MVP** (gameplay-first). Design the economy/state so optional
@@ -299,7 +301,9 @@ reference text above where they conflict):
   without rework. Keep any future integration mock/plug-ready until real credentials exist.
 - **MVP content scale:** ~**8 towns**, **2–3 trains**, **1 currency (coins)**, **4–6 cargo types**.
 - **Hosting/deploy:** **static hosting** (Netlify / Vercel / GitHub Pages) — free & simple,
-  ideal for a local-only PWA.
+  ideal for a local-only PWA. **Implementation:** **GitHub Pages** via a GitHub Actions workflow
+  (`.github/workflows/deploy.yml`) that builds + tests on every push to `main`; production build uses
+  `BASE_PATH=/CozyCargoCo/`. (Repo owner must enable Pages → source "GitHub Actions" once.)
 - **Target devices/browsers:** **desktop and mobile equally**; modern evergreen browsers
   (latest Chrome, Safari/iOS, Firefox, Edge). Responsive + touch-friendly *and* mouse-friendly.
 

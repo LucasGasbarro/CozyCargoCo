@@ -5,6 +5,8 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Set BASE_PATH (e.g. "/CozyCargoCo/") in CI for GitHub Pages project sites; "/" locally.
+  base: process.env.BASE_PATH || '/',
   plugins: [
     react(),
     VitePWA({
@@ -15,8 +17,8 @@ export default defineConfig({
         short_name: 'Cozy Cargo',
         description:
           'A cozy, low-pressure railway game. Plan your routes, dispatch your trains, and come back to a network quietly at work.',
-        theme_color: '#6c93c4',
-        background_color: '#f4efe6',
+        theme_color: '#4f7d5c',
+        background_color: '#fdf6e3',
         display: 'standalone',
         orientation: 'any',
         icons: [

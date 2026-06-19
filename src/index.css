@@ -31,9 +31,22 @@ body {
   background: var(--cozy-cream);
   -webkit-font-smoothing: antialiased;
   overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 button {
   font-family: inherit;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* UI chrome shouldn't be text-selectable on tap; the canvas/labels stay clean too. */
+.app,
+.hud,
+.dock,
+button,
+label {
+  user-select: none;
+  -webkit-user-select: none;
 }

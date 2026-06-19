@@ -25,8 +25,14 @@ export function MapView({
     const w = canvas.clientWidth
     const h = canvas.clientHeight
     sizeRef.current = { w, h }
-    canvas.width = Math.round(w * dpr)
-    canvas.height = Math.round(h * dpr)
+    // Only reallocate the backing bitmap when the element actually changed size — resizing every
+    // animation frame would needlessly clear + reallocate the canvas and thrash performance.
+    const pxW = Math.round(w * dpr)
+    const pxH = Math.round(h * dpr)
+    if (canvas.width !== pxW || canvas.height !== pxH) {
+      canvas.width = pxW
+      canvas.height = pxH
+    }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     drawMap(ctx, state, now, w, h, selectedId)
   }, [now, state, selectedId])

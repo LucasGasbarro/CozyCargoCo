@@ -5,6 +5,7 @@ import { CARGO_LABEL } from '../game/content/world'
 import { freeSlots, neighbors, trainTown } from '../game/engine'
 import { nearestUnlocked, unlockCost } from '../game/engine/growth'
 import { useGame } from './gameContext'
+import { playClick } from '../audio/sfx'
 
 export function TownPanel({
   townId,
@@ -40,6 +41,7 @@ export function TownPanel({
             onClick={() => {
               const err = unlock(townId)
               if (err) alert(err)
+              else playClick()
             }}
           >
             Connect & unlock — 🪙 {formatCoins(cost)}
@@ -75,6 +77,7 @@ export function TownPanel({
       alert(err)
       return
     }
+    playClick()
     setJobIds([])
     setDestination(null)
   }
