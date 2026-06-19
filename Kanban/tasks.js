@@ -15,7 +15,7 @@
  */
 window.KANBAN_META = {
   project: "Cozy Cargo Co. — MVP",
-  updatedAt: "2026-06-19T12:00:00-03:00",
+  updatedAt: "2026-06-19T12:08:00-03:00",
 };
 
 window.KANBAN_TASKS = [
@@ -32,19 +32,19 @@ window.KANBAN_TASKS = [
     description: "Set up src/game, src/ui, src/render, src/audio, src/assets per BasePrompt §13." },
 
   // ── M2 · Model & Engine ───────────────────────────────────────
-  { id: "model-types", title: "Define core types", milestone: "M2 · Model & Engine", status: "todo", etaMinutes: 30, startedAt: null,
+  { id: "model-types", title: "Define core types", milestone: "M2 · Model & Engine", status: "done", etaMinutes: 30, startedAt: "2026-06-19T12:02:00-03:00",
     description: "Town, TrackSegment, Train, CargoJob, GameState (TS, strict) per §13." },
-  { id: "engine-jobgen", title: "Cargo job generation", milestone: "M2 · Model & Engine", status: "todo", etaMinutes: 40, startedAt: null,
+  { id: "engine-jobgen", title: "Cargo job generation", milestone: "M2 · Model & Engine", status: "done", etaMinutes: 40, startedAt: null,
     description: "Generate available cargo jobs at towns (kind, destination, payout)." },
-  { id: "engine-dispatch", title: "dispatch() loading + send", milestone: "M2 · Model & Engine", status: "todo", etaMinutes: 30, startedAt: null,
+  { id: "engine-dispatch", title: "dispatch() loading + send", milestone: "M2 · Model & Engine", status: "done", etaMinutes: 30, startedAt: null,
     description: "Load chosen jobs onto a train respecting car slots; depart toward a destination." },
-  { id: "engine-tick", title: "tick() real-time travel", milestone: "M2 · Model & Engine", status: "todo", etaMinutes: 45, startedAt: null,
+  { id: "engine-tick", title: "tick() real-time travel", milestone: "M2 · Model & Engine", status: "done", etaMinutes: 45, startedAt: null,
     description: "Timestamp-based travel (departAtMs/arriveAtMs); advance/settle arrivals on tick." },
-  { id: "engine-collect", title: "collect() payouts on arrival", milestone: "M2 · Model & Engine", status: "todo", etaMinutes: 20, startedAt: null,
+  { id: "engine-collect", title: "collect() payouts on arrival", milestone: "M2 · Model & Engine", status: "done", etaMinutes: 20, startedAt: null,
     description: "On arrival, award coins, free car slots, make train dispatchable again." },
-  { id: "engine-economy", title: "Economy / payout formulas", milestone: "M2 · Model & Engine", status: "todo", etaMinutes: 30, startedAt: null,
+  { id: "engine-economy", title: "Economy / payout formulas", milestone: "M2 · Model & Engine", status: "done", etaMinutes: 30, startedAt: null,
     description: "Payout scaling by distance and cargo type; tune for cozy pacing." },
-  { id: "engine-tests", title: "Engine unit tests", milestone: "M2 · Model & Engine", status: "todo", etaMinutes: 40, startedAt: null,
+  { id: "engine-tests", title: "Engine unit tests", milestone: "M2 · Model & Engine", status: "done", etaMinutes: 40, startedAt: null,
     description: "Vitest for economy payouts and travel/tick determinism." },
 
   // ── M3 · Save & Offline ───────────────────────────────────────
