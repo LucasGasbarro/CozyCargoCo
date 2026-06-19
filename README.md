@@ -16,6 +16,9 @@ set-and-forget sessions** rather than a demanding tycoon sim.
 ## ✨ What you can do
 
 - **Tap a town** on the map to see the cargo jobs waiting there.
+- **Tap a line** between towns to inspect its length, fuel cost and travel time.
+- **Pan & zoom** the map — scroll or pinch to zoom, drag to pan, and tap the **reset-view (⛶)**
+  button in the header to recenter.
 - **Load a train** (respecting its car slots) and **dispatch** it to a connected town.
 - Trains travel in **real time** — coins are paid out automatically on delivery.
 - Progress keeps running while the tab is closed: a **"Welcome back"** summary tallies everything
@@ -116,6 +119,7 @@ tasks).
 | M11 | Visual Overhaul  | ✅     | Pixel-art retro reskin: tile world, sprite trains/stations, juice. |
 | M12 | HD Glow-up       | ✅     | Smooth HD illustrated renderer; full-screen map + bottom menu (Jobs/Station/Train); train fuel/damage/repair systems. |
 | M13 | Bigger Map + Lines | ✅   | 12 spread-out towns with varied line lengths; selectable track lines + "Lines" sheet (length, fuel cost, travel time). |
+| M14 | Header + Pan/Zoom | ✅    | Header (logo + Contact us) with flex header/map/menu layout; map pan & zoom (scroll/pinch/drag) + reset-view button. |
 
 ---
 

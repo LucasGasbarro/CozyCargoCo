@@ -257,8 +257,13 @@ The master colours live at the top of `map.ts`:
 - **Stations:** `drawStation()` / `drawLockBadge()` — rounded buildings (roof, windows, shadow).
 - **Trains:** `drawLoco()` + `drawCargoCar()` — gradient body, cab, wheels, tinted cars and the
   radial smoke; the loco flips to face its travel direction and gently bobs.
-- **Sizing:** the `su` scale factor (derived from viewport size) scales every sprite; `fitCamera()`
-  uses asymmetric insets so towns clear the floating HUD and the bottom menu.
+- **Sizing:** the `su` scale factor (derived from viewport size, multiplied by `view.zoom`) scales
+  every sprite; `fitCamera()` uses asymmetric insets so towns clear the header and the bottom menu.
+- **Pan & zoom:** the user's `View {zoom, panX, panY}` is composed onto the fit camera by
+  `viewTransform()` (`composeView`), so picking and drawing stay in sync. Gestures live in
+  `src/ui/MapView.tsx` (drag = pan, scroll/pinch = zoom anchored at the cursor/midpoint, tap = select);
+  limits are `ZOOM_MIN`/`ZOOM_MAX` + `clampView` there. The header **reset-view (⛶)** button restores
+  `DEFAULT_VIEW`.
 - **Juice:** coin "+$" pops and unlock sparkles live in `drawMap`/`drawLabels`/`drawUnlockSparkle`,
   fed by the store's `effects` list (see `src/ui/store.tsx`).
 

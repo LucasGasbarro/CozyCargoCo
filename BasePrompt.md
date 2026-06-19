@@ -346,6 +346,17 @@ reference text above where they conflict):
   estimate**. Renderer adds `pickSegment` + `segKey` + a selected-segment highlight; `drawMap` gains a
   `selectedSegId` arg. No engine/economy changes — purely content + UI/render.
 
+- **Header + pan/zoom (M14, committed):** added a persistent **header** (logo "🚂 Cozy Cargo Co." left;
+  coins, mute, new-game, and a **"✉️ Contact us" mailto** to lucasgasb96@gmail.com right) and switched
+  the app to a **flex column** — header / full-bleed map / anchored bottom menu (the menu is now a static
+  bar, not a floating pill; the 720px desktop width cap was removed so the map fills the viewport). The
+  map gained **pan & zoom:** scroll-wheel / pinch zooms (clamped 0.9×–2.6×, anchored at the cursor or
+  pinch midpoint), drag pans (clamped so content can't leave the screen), and a header **reset-view
+  button (⛶)** appears *only* while zoomed/panned. Implemented as a user `View {zoom,panX,panY}` composed
+  onto the fit camera in `viewTransform`; `drawMap` takes the `view` and scales sprites by `view.zoom`;
+  `MapView` uses pointer events (tap-vs-drag detection) + a non-passive wheel listener with
+  `touch-action:none`. Pure presentation — no engine/economy changes.
+
 ---
 
 ## 12. MVP Definition of Done (acceptance criteria)
@@ -440,6 +451,13 @@ interface GameState {
     highlight) and add a **"Lines" bottom-menu button** opening a sheet that lists every segment with
     its length, per-trip fuel cost and fastest travel-time estimate. Content + UI/render only
     (`pickSegment`/`segKey`/highlight in `render/map.ts`, `LinesSheet`); no engine changes.
+13. **Header + Map Pan/Zoom (M14 · post-MVP):** add a persistent **header** (logo left; coins, mute,
+    new-game, and a **"Contact us" mailto** right) and a **flex-column layout** (header / full-bleed map
+    / anchored bottom menu; remove the desktop width cap). Add **pan & zoom** to the map: scroll/pinch
+    zoom (clamped, cursor/midpoint-anchored), drag to pan (clamped), and a header **reset-view button**
+    shown only while zoomed/panned. Implemented via a user `View {zoom,panX,panY}` composed onto the fit
+    camera; `MapView` uses pointer events + a non-passive wheel listener. Presentation only; no engine
+    changes.
 
 ---
 

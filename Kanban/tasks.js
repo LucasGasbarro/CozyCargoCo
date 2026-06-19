@@ -15,7 +15,7 @@
  */
 window.KANBAN_META = {
   project: "Cozy Cargo Co. — MVP",
-  updatedAt: "2026-06-19T17:50:00-03:00",
+  updatedAt: "2026-06-19T19:25:00-03:00",
 };
 
 window.KANBAN_TASKS = [
@@ -160,6 +160,16 @@ window.KANBAN_TASKS = [
     description: "Fourth bottom-menu button 'Lines'; LinesSheet lists every segment (longest first) with length, per-trip fuel cost and fastest travel-time estimate; tap a row to highlight on the map." },
   { id: "ln-qa", title: "QA + docs + commit", milestone: "M13 · Bigger Map + Lines", status: "done", etaMinutes: 30, startedAt: "2026-06-19T17:40:00-03:00",
     description: "Typecheck/lint/57 tests, browser screenshot QA, update BasePrompt/README/GUIDE/Kanban; commit & push." },
+
+  // ── M14 · Header + Map Pan/Zoom ───────────────────────────────
+  { id: "hz-header", title: "Header + flex layout", milestone: "M14 · Header + Pan/Zoom", status: "done", etaMinutes: 35, startedAt: "2026-06-19T18:00:00-03:00",
+    description: "Add a header (logo left; coins/mute/new-game + 'Contact us' mailto right) and switch to a flex column header/map/menu; remove the desktop width cap; anchor the bottom menu as a static bar." },
+  { id: "hz-zoom", title: "Map pan & zoom", milestone: "M14 · Header + Pan/Zoom", status: "done", etaMinutes: 50, startedAt: "2026-06-19T18:20:00-03:00",
+    description: "User View {zoom,panX,panY} composed onto the fit camera in viewTransform; drawMap scales sprites by zoom; MapView pointer events (drag=pan, pinch=zoom, tap=select) + non-passive wheel listener; clamped zoom 0.9-2.6 and pan; touch-action:none." },
+  { id: "hz-reset", title: "Reset-view button", milestone: "M14 · Header + Pan/Zoom", status: "done", etaMinutes: 15, startedAt: "2026-06-19T18:50:00-03:00",
+    description: "Header reset-view button (⛶) shown only while zoomed/panned; resets View to default." },
+  { id: "hz-qa", title: "QA + docs + commit", milestone: "M14 · Header + Pan/Zoom", status: "done", etaMinutes: 25, startedAt: "2026-06-19T19:00:00-03:00",
+    description: "Typecheck/lint/57 tests, browser screenshot QA (home + zoomed), update BasePrompt/README/GUIDE/Kanban; commit & push." },
 ];
 
 

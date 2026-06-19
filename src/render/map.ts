@@ -23,6 +23,16 @@ export interface Vec2 {
   y: number
 }
 
+/** User pan/zoom applied on top of the auto-fit camera (1 = fit, 0 pan = centred). */
+export interface View {
+  zoom: number
+  panX: number
+  panY: number
+}
+
+/** The neutral "fit everything" view. */
+export const DEFAULT_VIEW: View = { zoom: 1, panX: 0, panY: 0 }
+
 /** A transient bit of "juice" surfaced by the store (delivery payout / town unlock). */
 export interface MapEffect {
   id: string
@@ -95,11 +105,31 @@ interface ViewTransform {
   cssCam: Camera
 }
 
+/** Apply a user view (zoom around the viewport centre + pan) to the auto-fit base camera. */
+function composeView(base: Camera, view: View, w: number, h: number): Camera {
+  const cx = w / 2
+  const cy = h / 2
+  const z = view.zoom
+  return {
+    scale: base.scale * z,
+    ox: (base.ox - cx) * z + cx + view.panX,
+    oy: (base.oy - cy) * z + cy + view.panY,
+  }
+}
+
 /** Single source of truth for world→screen mapping. HD draws 1:1 in CSS pixels (no upscale). */
-export function viewTransform(state: GameState, w: number, h: number): ViewTransform {
-  const side = clamp(Math.round(w * 0.13), 28, 70)
-  const cam = fitCamera(state, w, h, { t: 72, b: 116, l: side, r: side })
-  return { scale: 1, artW: w, artH: h, artCam: cam, cssCam: cam }
+export function viewTransform(
+  state: GameState,
+  w: number,
+  h: number,
+  view: View = DEFAULT_VIEW,
+): ViewTransform {
+  const side = clamp(Math.round(w * 0.1), 26, 64)
+  // The canvas now occupies the dedicated area between header and bottom menu, so only a small
+  // padding is needed — just enough to keep town name pills + job bubbles from touching the edges.
+  const base = fitCamera(state, w, h, { t: 40, b: 52, l: side, r: side })
+  const cam = composeView(base, view, w, h)
+  return { scale: view.zoom, artW: w, artH: h, artCam: cam, cssCam: cam }
 }
 
 function findTown(state: GameState, id: string): Town | undefined {
@@ -889,9 +919,10 @@ export function drawMap(
   selectedId: string | null,
   selectedSegId: string | null = null,
   effects: MapEffect[] = [],
+  view: View = DEFAULT_VIEW,
 ): void {
-  const { artCam: cam } = viewTransform(state, w, h)
-  const su = clamp(Math.min(w, h) / 430, 0.8, 1.5)
+  const { artCam: cam } = viewTransform(state, w, h, view)
+  const su = clamp(Math.min(w, h) / 430, 0.8, 1.5) * view.zoom
 
   ctx.imageSmoothingEnabled = true
   ctx.clearRect(0, 0, w, h)

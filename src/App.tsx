@@ -2,6 +2,7 @@ import { useState, type ReactNode } from 'react'
 import { GameProvider } from './ui/store'
 import { Hud } from './ui/Hud'
 import { MapView } from './ui/MapView'
+import { DEFAULT_VIEW, type View } from './render/map'
 import { TownPanel } from './ui/TownPanel'
 import { TrainSheet } from './ui/TrainSheet'
 import { LinesSheet } from './ui/LinesSheet'
@@ -24,6 +25,10 @@ function Game(): ReactNode {
   const [selected, setSelected] = useState<string | null>(null)
   const [selectedSeg, setSelectedSeg] = useState<string | null>(null)
   const [sheet, setSheet] = useState<SheetId | null>(null)
+  const [view, setView] = useState<View>(DEFAULT_VIEW)
+
+  const zoomed = view.zoom !== 1 || view.panX !== 0 || view.panY !== 0
+  const resetView = (): void => setView(DEFAULT_VIEW)
 
   const selectTown = (id: string): void => {
     setSelected(id)
@@ -45,13 +50,15 @@ function Game(): ReactNode {
 
   return (
     <div className="app">
+      <Hud zoomed={zoomed} onResetView={resetView} />
       <MapView
         selectedId={selected}
         selectedSegId={selectedSeg}
+        view={view}
+        onView={setView}
         onSelect={selectTown}
         onSelectSegment={selectSegment}
       />
-      <Hud />
       <BottomMenu active={sheet} onOpen={openSheet} />
 
       {sheet === 'jobs' && (
