@@ -15,7 +15,7 @@
  */
 window.KANBAN_META = {
   project: "Cozy Cargo Co. — MVP",
-  updatedAt: "2026-06-19T12:08:00-03:00",
+  updatedAt: "2026-06-19T12:20:00-03:00",
 };
 
 window.KANBAN_TASKS = [
@@ -48,13 +48,13 @@ window.KANBAN_TASKS = [
     description: "Vitest for economy payouts and travel/tick determinism." },
 
   // ── M3 · Save & Offline ───────────────────────────────────────
-  { id: "save-serialize", title: "Versioned (de)serialize", milestone: "M3 · Save & Offline", status: "todo", etaMinutes: 30, startedAt: null,
+  { id: "save-serialize", title: "Versioned (de)serialize", milestone: "M3 · Save & Offline", status: "done", etaMinutes: 30, startedAt: "2026-06-19T12:10:00-03:00",
     description: "Serialize/deserialize GameState with a schema version for future migrations." },
-  { id: "save-localstorage", title: "localStorage adapter", milestone: "M3 · Save & Offline", status: "todo", etaMinutes: 20, startedAt: null,
+  { id: "save-localstorage", title: "localStorage adapter", milestone: "M3 · Save & Offline", status: "done", etaMinutes: 20, startedAt: "2026-06-19T12:10:00-03:00",
     description: "Abstracted save adapter (localStorage now; IndexedDB/cloud later) + autosave." },
-  { id: "save-offline", title: "Offline-progress reconciliation", milestone: "M3 · Save & Offline", status: "todo", etaMinutes: 45, startedAt: null,
+  { id: "save-offline", title: "Offline-progress reconciliation", milestone: "M3 · Save & Offline", status: "done", etaMinutes: 45, startedAt: "2026-06-19T12:10:00-03:00",
     description: "On load, replay elapsed real time so in-transit trains settle correctly." },
-  { id: "save-tests", title: "Save & offline tests", milestone: "M3 · Save & Offline", status: "todo", etaMinutes: 30, startedAt: null,
+  { id: "save-tests", title: "Save & offline tests", milestone: "M3 · Save & Offline", status: "done", etaMinutes: 30, startedAt: "2026-06-19T12:10:00-03:00",
     description: "Vitest for round-trip save/load and offline reconciliation math." },
 
   // ── M4 · Map Rendering ────────────────────────────────────────
