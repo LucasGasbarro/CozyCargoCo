@@ -9,7 +9,7 @@
  * Public API kept stable for MapView + the rest of the app: makeCamera, worldToScreen,
  * trainWorldPos, pickTown, drawMap, viewTransform, MapEffect, Camera, Vec2.
  */
-import type { GameState, Town, Train, CargoKind } from '../game/model/types'
+import type { GameState, Town, Train, CargoKind, TrackSegment } from '../game/model/types'
 import { clamp } from '../game/util'
 
 export interface Camera {
@@ -142,7 +142,42 @@ export function pickTown(
   return best
 }
 
-// ── Small drawing helpers ───────────────────────────────────────────────────
+/** Stable key for a track segment, independent of endpoint order. */
+export function segKey(a: string, b: string): string {
+  return a < b ? `${a}|${b}` : `${b}|${a}`
+}
+
+/** Shortest distance (px) from point (px,py) to the screen segment pa→pb. */
+function distPointToSeg(px: number, py: number, pa: Vec2, pb: Vec2): number {
+  const dx = pb.x - pa.x
+  const dy = pb.y - pa.y
+  const len2 = dx * dx + dy * dy || 1
+  const t = clamp(((px - pa.x) * dx + (py - pa.y) * dy) / len2, 0, 1)
+  return Math.hypot(px - (pa.x + dx * t), py - (pa.y + dy * t))
+}
+
+/** Nearest track segment to a screen point within `radiusPx`, or undefined. */
+export function pickSegment(
+  state: GameState,
+  cam: Camera,
+  sx: number,
+  sy: number,
+  radiusPx = 16,
+): TrackSegment | undefined {
+  let best: TrackSegment | undefined
+  let bestD = radiusPx
+  for (const seg of state.track) {
+    const a = findTown(state, seg.a)
+    const b = findTown(state, seg.b)
+    if (!a || !b) continue
+    const d = distPointToSeg(sx, sy, worldToScreen(cam, a.x, a.y), worldToScreen(cam, b.x, b.y))
+    if (d <= bestD) {
+      bestD = d
+      best = seg
+    }
+  }
+  return best
+}
 
 function hash2(x: number, y: number, seed = 0): number {
   let h = (x * 374761393 + y * 668265263 + seed * 1442695040) | 0
@@ -405,8 +440,52 @@ function drawTrack(ctx: CanvasRenderingContext2D, state: GameState, cam: Camera,
   }
 }
 
-// ── Stations ────────────────────────────────────────────────────────────────
+// ── Selected line highlight ──────────────────────────────────────────────────
 
+/** Glowing golden overlay on the player-selected track segment. */
+function drawTrackHighlight(
+  ctx: CanvasRenderingContext2D,
+  state: GameState,
+  cam: Camera,
+  selectedSegId: string | null,
+  now: number,
+  su: number,
+): void {
+  if (!selectedSegId) return
+  const seg = state.track.find((s) => segKey(s.a, s.b) === selectedSegId)
+  if (!seg) return
+  const a = findTown(state, seg.a)
+  const b = findTown(state, seg.b)
+  if (!a || !b) return
+  const pa = worldToScreen(cam, a.x, a.y)
+  const pb = worldToScreen(cam, b.x, b.y)
+  const pulse = 0.55 + Math.sin(now / 260) * 0.2
+
+  ctx.save()
+  ctx.lineCap = 'round'
+  ctx.strokeStyle = `rgba(255,205,90,${pulse})`
+  ctx.lineWidth = 16 * su
+  ctx.shadowColor = 'rgba(255,205,90,0.9)'
+  ctx.shadowBlur = 14 * su
+  ctx.beginPath()
+  ctx.moveTo(pa.x, pa.y)
+  ctx.lineTo(pb.x, pb.y)
+  ctx.stroke()
+  ctx.restore()
+
+  // bright core line
+  ctx.save()
+  ctx.lineCap = 'round'
+  ctx.strokeStyle = 'rgba(255,240,190,0.95)'
+  ctx.lineWidth = 3 * su
+  ctx.beginPath()
+  ctx.moveTo(pa.x, pa.y)
+  ctx.lineTo(pb.x, pb.y)
+  ctx.stroke()
+  ctx.restore()
+}
+
+// ── Stations ────────────────────────────────────────────────────────────────
 function drawStation(
   ctx: CanvasRenderingContext2D,
   cx: number,
@@ -808,6 +887,7 @@ export function drawMap(
   w: number,
   h: number,
   selectedId: string | null,
+  selectedSegId: string | null = null,
   effects: MapEffect[] = [],
 ): void {
   const { artCam: cam } = viewTransform(state, w, h)
@@ -818,6 +898,7 @@ export function drawMap(
 
   drawBackground(ctx, state, cam, w, h, su)
   drawTrack(ctx, state, cam, su)
+  drawTrackHighlight(ctx, state, cam, selectedSegId, now, su)
 
   // Selection glow under the selected station.
   if (selectedId) {

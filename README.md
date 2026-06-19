@@ -115,6 +115,7 @@ tasks).
 | M10 | QA & Ship        | ✅     | Verify Definition of Done; GitHub Pages deploy workflow.         |
 | M11 | Visual Overhaul  | ✅     | Pixel-art retro reskin: tile world, sprite trains/stations, juice. |
 | M12 | HD Glow-up       | ✅     | Smooth HD illustrated renderer; full-screen map + bottom menu (Jobs/Station/Train); train fuel/damage/repair systems. |
+| M13 | Bigger Map + Lines | ✅   | 12 spread-out towns with varied line lengths; selectable track lines + "Lines" sheet (length, fuel cost, travel time). |
 
 ---
 

@@ -15,7 +15,7 @@
  */
 window.KANBAN_META = {
   project: "Cozy Cargo Co. — MVP",
-  updatedAt: "2026-06-19T16:20:00-03:00",
+  updatedAt: "2026-06-19T17:50:00-03:00",
 };
 
 window.KANBAN_TASKS = [
@@ -150,6 +150,16 @@ window.KANBAN_TASKS = [
     description: "Rewrite index.css tokens + App.css: rounded HD chrome, system rounded font (drop Press Start 2P), soft shadows, sheet/menu/card styling." },
   { id: "hd-qa", title: "QA + build + docs + commit", milestone: "M12 · HD Glow-up", status: "done", etaMinutes: 40, startedAt: "2026-06-19T16:05:00-03:00",
     description: "Typecheck/lint/57 tests, prod build (default + BASE_PATH), browser screenshot QA, update BasePrompt/README/GUIDE/Kanban; commit & push." },
+
+  // ── M13 · Bigger Map + Selectable Lines ───────────────────────
+  { id: "ln-world", title: "Bigger, spread-out world", milestone: "M13 · Bigger Map + Lines", status: "done", etaMinutes: 35, startedAt: "2026-06-19T17:00:00-03:00",
+    description: "Grow to 12 towns (add Willowmere/Thornbury/Hazelmere/Pinecrest), respace so the four opening lines have clearly different lengths (longer line = more fuel)." },
+  { id: "ln-pick", title: "Selectable track lines", milestone: "M13 · Bigger Map + Lines", status: "done", etaMinutes: 40, startedAt: "2026-06-19T17:00:00-03:00",
+    description: "render/map.ts pickSegment + segKey + glowing golden highlight; drawMap gains selectedSegId; MapView falls back from town-pick to line-pick on tap." },
+  { id: "ln-sheet", title: "Lines sheet + bottom button", milestone: "M13 · Bigger Map + Lines", status: "done", etaMinutes: 40, startedAt: "2026-06-19T17:20:00-03:00",
+    description: "Fourth bottom-menu button 'Lines'; LinesSheet lists every segment (longest first) with length, per-trip fuel cost and fastest travel-time estimate; tap a row to highlight on the map." },
+  { id: "ln-qa", title: "QA + docs + commit", milestone: "M13 · Bigger Map + Lines", status: "done", etaMinutes: 30, startedAt: "2026-06-19T17:40:00-03:00",
+    description: "Typecheck/lint/57 tests, browser screenshot QA, update BasePrompt/README/GUIDE/Kanban; commit & push." },
 ];
 
 

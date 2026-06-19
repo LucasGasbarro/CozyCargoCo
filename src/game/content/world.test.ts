@@ -6,7 +6,7 @@ describe('createNewGame', () => {
   it('seeds the expected starter content', () => {
     const g = createNewGame(1000, 42)
     expect(g.coins).toBe(STARTING_COINS)
-    expect(g.towns).toHaveLength(8)
+    expect(g.towns).toHaveLength(12)
     expect(g.trains).toHaveLength(2)
     expect(g.lastSeenMs).toBe(1000)
   })

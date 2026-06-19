@@ -335,6 +335,16 @@ reference text above where they conflict):
   dispatch yet** (further gating rules to come). Tunable constants live in `src/game/engine/trains.ts`.
   `SAVE_VERSION` bumped **1 → 2** (legacy saves lacking fuel fields are discarded → fresh game). The
   two things the user likes — town connection lines + visibly travelling trains — are still preserved.
+- **Bigger map + selectable lines (M13, committed):** the world grows from 8 to **12 towns**, spaced
+  further apart so the **four opening lines all have clearly different lengths** (≈311 / 397 / 466 /
+  522 units). Because dispatch already burns fuel by distance, **longer lines cost more fuel** — now
+  visible and meaningful. New towns: Willowmere, Thornbury, Hazelmere, Pinecrest (locked, unlocked
+  via the existing growth flow). **Lines are now selectable:** tapping a track segment on the map (or
+  a row in the new sheet) highlights it with a glowing golden overlay. A **fourth bottom-menu button,
+  "Lines" (🛤️)**, opens a sheet listing every segment — sorted longest-first — with its **length
+  (units), fuel burned per trip (`round(lengthUnits × FUEL_PER_UNIT)`), and fastest-train travel-time
+  estimate**. Renderer adds `pickSegment` + `segKey` + a selected-segment highlight; `drawMap` gains a
+  `selectedSegId` arg. No engine/economy changes — purely content + UI/render.
 
 ---
 
@@ -424,6 +434,12 @@ interface GameState {
     100-coin fill), damage % + paid repair, cargo/fuel-cart stats; dispatch burns fuel + adds wear
     (not gating yet). New `engine/trains.ts` (pure); `SAVE_VERSION → 2`. Drops the Press Start 2P
     font for a system stack. Engine stays pure/timestamp-driven; the user's liked features preserved.
+12. **Bigger Map + Selectable Lines (M13 · post-MVP):** grow the world to **12 towns** spread further
+    apart so the opening lines have **clearly different lengths** (longer line ⇒ more fuel, which the
+    economy already models). Make track segments **selectable** (tap a line on the map → golden
+    highlight) and add a **"Lines" bottom-menu button** opening a sheet that lists every segment with
+    its length, per-trip fuel cost and fastest travel-time estimate. Content + UI/render only
+    (`pickSegment`/`segKey`/highlight in `render/map.ts`, `LinesSheet`); no engine changes.
 
 ---
 

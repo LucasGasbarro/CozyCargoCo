@@ -33,12 +33,13 @@ const TOWN_SEEDS: TownSeed[] = [
 | ---------- | -------------------------------------------------------------------------------- |
 | `id`       | Unique slug (lowercase, no spaces). Used everywhere to reference the town.        |
 | `name`     | Display name shown on the map and in panels.                                      |
-| `x`, `y`   | Position in **world units** (~0–1000). The camera auto-fits all towns on screen.  |
+| `x`, `y`   | Position in **world units** (~0–1300 × 0–900). The camera auto-fits all towns on screen. |
 | `unlocked` | `true` = playable from the start; `false` = the player pays coins to unlock it.   |
 
 **To add a town**, append a new seed with a fresh `id`. That's it — the map camera re-fits
 automatically, and a locked town becomes unlockable once any unlocked town is nearby (track is laid
-automatically on unlock; see [Network growth](#tune-network-growth-unlock-costs)).
+automatically on unlock; see [Network growth](#tune-network-growth-unlock-costs)). The starter world
+ships with **12 towns** (4 unlocked + 8 to grow into).
 
 **To start it already connected**, also add a track segment in `STARTER_TRACK`:
 
@@ -51,8 +52,10 @@ const STARTER_TRACK: [TownId, TownId][] = [
 ]
 ```
 
-Track length (and therefore travel time + payout) is derived automatically from the two towns'
-coordinates, so you only list the pair of ids.
+Track length (and therefore travel time, **fuel burned**, and payout) is derived automatically from
+the two towns' coordinates, so you only list the pair of ids. Players can tap a line on the map (or
+the **Lines** bottom-menu button) to inspect its length, per-trip fuel cost and travel-time estimate.
+Spacing towns further apart makes lines longer — and longer lines cost more fuel to run.
 
 > Towns that start `unlocked: true` are auto-seeded with jobs on a new game; locked towns get jobs
 > when unlocked.

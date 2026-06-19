@@ -38,16 +38,22 @@ interface TownSeed {
   unlocked: boolean
 }
 
-/** Eight cozy towns laid out across a little island (world units ~0..1000). */
+/** Twelve cozy towns spread across a little island (world units ~0..1300 × 0..900). */
 const TOWN_SEEDS: TownSeed[] = [
-  { id: 'ashford', name: 'Ashford', x: 200, y: 500, unlocked: true },
-  { id: 'brook', name: 'Brookwell', x: 400, y: 300, unlocked: true },
-  { id: 'cedar', name: 'Cedar Hollow', x: 450, y: 660, unlocked: true },
-  { id: 'dewbury', name: 'Dewbury', x: 660, y: 460, unlocked: true },
-  { id: 'mossy', name: 'Mossy Vale', x: 130, y: 250, unlocked: false },
-  { id: 'elder', name: 'Elderpine', x: 830, y: 250, unlocked: false },
-  { id: 'fox', name: 'Foxglen', x: 840, y: 660, unlocked: false },
-  { id: 'gull', name: 'Gull Harbour', x: 980, y: 470, unlocked: false },
+  // Starter cluster (unlocked) — laid out so the four opening lines are all different lengths.
+  { id: 'ashford', name: 'Ashford', x: 160, y: 460, unlocked: true },
+  { id: 'brook', name: 'Brookwell', x: 380, y: 240, unlocked: true },
+  { id: 'cedar', name: 'Cedar Hollow', x: 420, y: 760, unlocked: true },
+  { id: 'dewbury', name: 'Dewbury', x: 820, y: 520, unlocked: true },
+  // The wider island, unlocked by spending coins (track auto-laid to the nearest neighbour).
+  { id: 'mossy', name: 'Mossy Vale', x: 140, y: 180, unlocked: false },
+  { id: 'willow', name: 'Willowmere', x: 560, y: 110, unlocked: false },
+  { id: 'thorn', name: 'Thornbury', x: 300, y: 830, unlocked: false },
+  { id: 'elder', name: 'Elderpine', x: 950, y: 230, unlocked: false },
+  { id: 'gull', name: 'Gull Harbour', x: 1120, y: 560, unlocked: false },
+  { id: 'fox', name: 'Foxglen', x: 980, y: 810, unlocked: false },
+  { id: 'haze', name: 'Hazelmere', x: 1200, y: 300, unlocked: false },
+  { id: 'pine', name: 'Pinecrest', x: 1280, y: 770, unlocked: false },
 ]
 
 /** Track connections present at the start of a new game (among the unlocked towns). */

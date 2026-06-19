@@ -1,14 +1,18 @@
-/** Canvas map view: paints the world each animation frame and reports town taps. */
+/** Canvas map view: paints the world each animation frame and reports town + line taps. */
 import { useEffect, useRef, type ReactNode } from 'react'
-import { drawMap, pickTown, viewTransform } from '../render/map'
+import { drawMap, pickSegment, pickTown, segKey, viewTransform } from '../render/map'
 import { useAnimationClock, useGame } from './gameContext'
 
 export function MapView({
   selectedId,
+  selectedSegId,
   onSelect,
+  onSelectSegment,
 }: {
   selectedId: string | null
+  selectedSegId: string | null
   onSelect: (townId: string) => void
+  onSelectSegment: (segId: string) => void
 }): ReactNode {
   const { state, effects } = useGame()
   const now = useAnimationClock()
@@ -34,8 +38,8 @@ export function MapView({
       canvas.height = pxH
     }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-    drawMap(ctx, state, now, w, h, selectedId, effects)
-  }, [now, state, selectedId, effects])
+    drawMap(ctx, state, now, w, h, selectedId, selectedSegId, effects)
+  }, [now, state, selectedId, selectedSegId, effects])
 
   const handleClick = (e: React.MouseEvent<HTMLCanvasElement>): void => {
     const canvas = canvasRef.current
@@ -45,8 +49,14 @@ export function MapView({
     const sy = e.clientY - rect.top
     const { w, h } = sizeRef.current
     const { cssCam } = viewTransform(state, w, h)
+    // Towns (nodes) take priority; fall back to picking a line between them.
     const town = pickTown(state, cssCam, sx, sy)
-    if (town) onSelect(town.id)
+    if (town) {
+      onSelect(town.id)
+      return
+    }
+    const seg = pickSegment(state, cssCam, sx, sy)
+    if (seg) onSelectSegment(segKey(seg.a, seg.b))
   }
 
   return (
@@ -55,7 +65,7 @@ export function MapView({
       className="map-canvas"
       onClick={handleClick}
       role="img"
-      aria-label="Railway map. Tap a town to manage it."
+      aria-label="Railway map. Tap a town to manage it, or a line to inspect the route."
     />
   )
 }

@@ -1,7 +1,7 @@
 /** Bottom menu bar over the full-screen map: Jobs / Station / Train. */
 import type { ReactNode } from 'react'
 
-export type SheetId = 'jobs' | 'station' | 'train'
+export type SheetId = 'jobs' | 'station' | 'train' | 'lines'
 
 export function BottomMenu({
   active,
@@ -12,6 +12,7 @@ export function BottomMenu({
 }): ReactNode {
   const items: { id: SheetId; icon: string; label: string }[] = [
     { id: 'jobs', icon: '📋', label: 'Jobs' },
+    { id: 'lines', icon: '🛤️', label: 'Lines' },
     { id: 'station', icon: '🏠', label: 'Station' },
     { id: 'train', icon: '🚂', label: 'Train' },
   ]

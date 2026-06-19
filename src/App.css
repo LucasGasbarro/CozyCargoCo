@@ -391,6 +391,49 @@
   font-weight: 600;
 }
 
+/* ── Lines list (track segments) ───────────────────── */
+.line-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.line-card {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  background: #fff;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  padding: 12px 14px;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(45, 38, 60, 0.1);
+  transition: border-color 0.18s ease, transform 0.06s ease;
+}
+.line-card:active {
+  transform: scale(0.99);
+}
+.line-card-on {
+  border-color: var(--cozy-amber);
+  background: #fffaf0;
+}
+.line-card-route {
+  font-weight: 800;
+  font-size: 1rem;
+}
+.line-card-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
 /* ── Empty state (Station sheet) ───────────────────── */
 .empty-state {
   text-align: center;
