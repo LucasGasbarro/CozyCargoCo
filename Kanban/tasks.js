@@ -15,7 +15,7 @@
  */
 window.KANBAN_META = {
   project: "Cozy Cargo Co. — MVP",
-  updatedAt: "2026-06-19T12:27:00-03:00",
+  updatedAt: "2026-06-19T12:51:00-03:00",
 };
 
 window.KANBAN_TASKS = [
@@ -58,33 +58,33 @@ window.KANBAN_TASKS = [
     description: "Vitest for round-trip save/load and offline reconciliation math." },
 
   // ── M4 · Map Rendering ────────────────────────────────────────
-  { id: "render-canvas", title: "Canvas + integer scaling", milestone: "M4 · Map Rendering", status: "todo", etaMinutes: 30, startedAt: null,
+  { id: "render-canvas", title: "Canvas + integer scaling", milestone: "M4 · Map Rendering", status: "done", etaMinutes: 30, startedAt: "2026-06-19T12:28:00-03:00",
     description: "Canvas setup with pixel-perfect integer scaling (image-rendering: pixelated)." },
-  { id: "assets-load", title: "Load CC0 sprites + attribution", milestone: "M4 · Map Rendering", status: "todo", etaMinutes: 30, startedAt: null,
+  { id: "assets-load", title: "Load CC0 sprites + attribution", milestone: "M4 · Map Rendering", status: "done", etaMinutes: 30, startedAt: "2026-06-19T12:28:00-03:00",
     description: "Source/import placeholder pixel-art packs; record licenses/attribution." },
-  { id: "render-towns", title: "Render towns", milestone: "M4 · Map Rendering", status: "todo", etaMinutes: 25, startedAt: null,
+  { id: "render-towns", title: "Render towns", milestone: "M4 · Map Rendering", status: "done", etaMinutes: 25, startedAt: "2026-06-19T12:28:00-03:00",
     description: "Draw town sprites at map coordinates; locked vs unlocked states." },
-  { id: "render-track", title: "Render track", milestone: "M4 · Map Rendering", status: "todo", etaMinutes: 25, startedAt: null,
+  { id: "render-track", title: "Render track", milestone: "M4 · Map Rendering", status: "done", etaMinutes: 25, startedAt: "2026-06-19T12:28:00-03:00",
     description: "Draw track segments between connected towns." },
-  { id: "render-trains", title: "Render moving trains", milestone: "M4 · Map Rendering", status: "todo", etaMinutes: 40, startedAt: null,
+  { id: "render-trains", title: "Render moving trains", milestone: "M4 · Map Rendering", status: "done", etaMinutes: 40, startedAt: "2026-06-19T12:28:00-03:00",
     description: "Interpolate train position along a segment using depart/arrive timestamps." },
 
   // ── M5 · Core UI ──────────────────────────────────────────────
-  { id: "ui-hud", title: "HUD (coins)", milestone: "M5 · Core UI", status: "todo", etaMinutes: 20, startedAt: null,
+  { id: "ui-hud", title: "HUD (coins)", milestone: "M5 · Core UI", status: "done", etaMinutes: 20, startedAt: "2026-06-19T12:28:00-03:00",
     description: "Persistent coin balance display." },
-  { id: "ui-townpanel", title: "Town panel (jobs + loadout)", milestone: "M5 · Core UI", status: "todo", etaMinutes: 60, startedAt: null,
+  { id: "ui-townpanel", title: "Town panel (jobs + loadout)", milestone: "M5 · Core UI", status: "done", etaMinutes: 60, startedAt: "2026-06-19T12:28:00-03:00",
     description: "Tap a town to see available jobs and load them onto a train's car slots." },
-  { id: "ui-dispatch", title: "Dispatch flow", milestone: "M5 · Core UI", status: "todo", etaMinutes: 40, startedAt: null,
+  { id: "ui-dispatch", title: "Dispatch flow", milestone: "M5 · Core UI", status: "done", etaMinutes: 40, startedAt: "2026-06-19T12:28:00-03:00",
     description: "Pick destination and send the train; show travel state." },
-  { id: "ui-roster", title: "Train roster view", milestone: "M5 · Core UI", status: "todo", etaMinutes: 30, startedAt: null,
+  { id: "ui-roster", title: "Train roster view", milestone: "M5 · Core UI", status: "done", etaMinutes: 30, startedAt: "2026-06-19T12:28:00-03:00",
     description: "List trains with status (idle/en route), capacity, and location." },
-  { id: "ui-welcomeback", title: "Welcome-back summary", milestone: "M5 · Core UI", status: "todo", etaMinutes: 30, startedAt: null,
+  { id: "ui-welcomeback", title: "Welcome-back summary", milestone: "M5 · Core UI", status: "done", etaMinutes: 30, startedAt: "2026-06-19T12:28:00-03:00",
     description: "On return, show what arrived and coins earned while away." },
 
   // ── M6 · Network Growth ───────────────────────────────────────
-  { id: "grow-track", title: "Build track with coins", milestone: "M6 · Network Growth", status: "todo", etaMinutes: 40, startedAt: null,
-    description: "Spend coins to connect a new pair of towns; cost scales with distance." },
-  { id: "grow-unlock", title: "Unlock new town with coins", milestone: "M6 · Network Growth", status: "todo", etaMinutes: 30, startedAt: null,
+  { id: "grow-track", title: "Build track with coins", milestone: "M6 · Network Growth", status: "done", etaMinutes: 40, startedAt: "2026-06-19T12:30:00-03:00",
+    description: "Spend coins to connect a new pair of towns; cost scales with distance. (Track is laid automatically when unlocking a town.)" },
+  { id: "grow-unlock", title: "Unlock new town with coins", milestone: "M6 · Network Growth", status: "done", etaMinutes: 30, startedAt: "2026-06-19T12:30:00-03:00",
     description: "Spend coins to unlock a reachable town and open its jobs." },
 
   // ── M7 · Content ──────────────────────────────────────────────
@@ -119,3 +119,4 @@ window.KANBAN_TASKS = [
   { id: "ship-deploy", title: "Deploy to static hosting", milestone: "M10 · QA & Ship", status: "todo", etaMinutes: 30, startedAt: null,
     description: "Build and deploy the PWA to Netlify/Vercel/GitHub Pages." },
 ];
+
