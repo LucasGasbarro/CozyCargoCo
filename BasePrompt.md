@@ -306,6 +306,35 @@ reference text above where they conflict):
   `BASE_PATH=/CozyCargoCo/`. (Repo owner must enable Pages → source "GitHub Actions" once.)
 - **Target devices/browsers:** **desktop and mobile equally**; modern evergreen browsers
   (latest Chrome, Safari/iOS, Firefox, Edge). Responsive + touch-friendly *and* mouse-friendly.
+- **Visual overhaul (post-MVP, committed):** after the logic MVP, the look gets a major upgrade to
+  **pixel-art retro** — chunky 16-bit sprites, a **tile-based world** (grass/water/forest tiles),
+  nostalgic charm. Approach: keep the **pure-canvas procedural** renderer (no asset licensing) but
+  render to a **low-res offscreen buffer that is integer-scaled up** with image smoothing **off** for
+  crisp pixels. Sprites are defined as in-repo pixel bitmaps (rows of palette keys) — locomotive
+  (faces travel direction) + cargo cars, station depots, trees/decorations. Add **juice**: chimney
+  smoke puffs while en route, a coin "+$" pop on delivery, a sparkle on town unlock. UI chrome goes
+  retro too (pixel display font for HUD/titles/buttons via the OFL-licensed **Press Start 2P**;
+  chunky bordered panels). The two things the user explicitly likes are preserved: **town-to-town
+  connection lines** and **the train visibly travelling** to its dispatched destination.
+- **HD glow-up + train systems (M12, committed — supersedes the pixel-art direction above):** the
+  user found the 16-bit pixel reskin too chunky and asked for a **smooth HD illustrated look**
+  (PS2-era: gradients, soft shading, lighting, drop shadows, anti-aliasing). The renderer now draws
+  at **full resolution with `imageSmoothingEnabled = true`** (no low-res buffer / integer scaling):
+  grass gradient + hills/ponds/trees + vignette background, rounded station buildings, soft
+  roadbed/rails/sleepers track, gradient locomotive + tinted cargo cars + radial smoke, name pills,
+  job bubbles, selection glow, coin pops, unlock sparkles. The bundled **Press Start 2P** font is
+  dropped — UI chrome uses a rounded **system font stack**. **UX restructure:** the map fills the
+  whole viewport with a **floating top HUD** (coins/mute/reset) and a **bottom menu bar** with three
+  buttons — **Jobs** (opens the selected-town dispatch sheet; tapping a town also opens it),
+  **Station** (placeholder for now), and **Train** (per-train stats sheet). Popups use a reusable
+  bottom-`Sheet` wrapper. **Train systems added:** each train has **fuel** (regenerates **+1
+  unit/sec** passively via timestamp math so it refuels offline too; **Fill = flat 100 coins** →
+  full; sheet shows live **time-to-full**), **damage %** (**Repair cost = ceil(value × 0.20 ×
+  damage%/100)** → 0%), and **cargo / fuel-cart** stats (`fuelCarts` / `fuelCartSlots`). Dispatch
+  **burns fuel by distance and adds small wear** so both systems are alive, but does **not block
+  dispatch yet** (further gating rules to come). Tunable constants live in `src/game/engine/trains.ts`.
+  `SAVE_VERSION` bumped **1 → 2** (legacy saves lacking fuel fields are discarded → fresh game). The
+  two things the user likes — town connection lines + visibly travelling trains — are still preserved.
 
 ---
 
@@ -384,6 +413,17 @@ interface GameState {
 7. **Audio:** wire light SFX.
 8. **Polish & responsive pass:** phone + desktop, touch + mouse; PWA install; perf check.
 9. **QA against §12 Definition of Done;** fix; ship to static hosting.
+10. **Visual Overhaul (M11 · post-MVP):** pixel-art retro reskin — pixel rendering foundation
+    (offscreen low-res buffer, integer scaling, smoothing off, sprite system), tile-based world,
+    pixel track/rails, animated direction-facing locomotive + smoke, juice (coin pop / unlock
+    sparkle), retro UI chrome. Logic engine untouched; all changes in `render/` + UI/CSS.
+11. **HD Glow-up + Train Systems (M12 · post-MVP):** replace the chunky pixel reskin with a **smooth
+    HD illustrated** renderer (full-res, `imageSmoothingEnabled`, gradients/soft shading/shadows/
+    vignette; no offscreen buffer). Restructure UX to a **full-screen map + bottom menu** (Jobs /
+    Station / Train sheets) with a floating HUD. Add **train systems**: fuel (passive +1/sec regen +
+    100-coin fill), damage % + paid repair, cargo/fuel-cart stats; dispatch burns fuel + adds wear
+    (not gating yet). New `engine/trains.ts` (pure); `SAVE_VERSION → 2`. Drops the Press Start 2P
+    font for a system stack. Engine stays pure/timestamp-driven; the user's liked features preserved.
 
 ---
 

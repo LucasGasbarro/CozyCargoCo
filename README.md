@@ -32,7 +32,7 @@ set-and-forget sessions** rather than a demanding tycoon sim.
 | -------------- | ------------------------------------------------- |
 | Language       | TypeScript (strict)                               |
 | UI             | React 19                                          |
-| Rendering      | HTML5 Canvas (procedural cartoon art, no assets)  |
+| Rendering      | HTML5 Canvas — **HD illustrated** (smooth gradients, soft shading, shadows, anti-aliased), procedural — no image assets |
 | Build / dev    | Vite                                              |
 | Offline / PWA  | `vite-plugin-pwa` (manifest + service worker)     |
 | Tests          | Vitest                                            |
@@ -110,9 +110,11 @@ tasks).
 | M5  | Core UI          | ✅     | HUD, town panel, dispatch, roster, welcome-back.                  |
 | M6  | Network Growth   | ✅     | Unlock towns with coins; auto-lay connecting track.               |
 | M7  | Content          | ✅     | 8 towns, 2 trains, 6 cargo types; deterministic new-game.         |
-| M8  | Audio            | ⏳     | Light SFX (click/chime/coin).                                     |
-| M9  | Polish           | ⏳     | Responsive + touch pass, PWA install, perf.                       |
-| M10 | QA & Ship        | ⏳     | Verify Definition of Done; deploy to static hosting.              |
+| M8  | Audio            | ✅     | Light SFX (click/chime/coin), procedural Web Audio + mute.        |
+| M9  | Polish           | ✅     | Responsive + touch pass, PWA install, perf.                      |
+| M10 | QA & Ship        | ✅     | Verify Definition of Done; GitHub Pages deploy workflow.         |
+| M11 | Visual Overhaul  | ✅     | Pixel-art retro reskin: tile world, sprite trains/stations, juice. |
+| M12 | HD Glow-up       | ✅     | Smooth HD illustrated renderer; full-screen map + bottom menu (Jobs/Station/Train); train fuel/damage/repair systems. |
 
 ---
 
@@ -137,5 +139,7 @@ any static host (GitHub Pages, Netlify, Vercel, Cloudflare Pages, S3, …) — n
 
 ## 📝 License & assets
 
-All in-game art is **drawn procedurally on canvas** — there are no third-party image/audio assets to
-attribute in the MVP. If you add real sprites or sound, record their licenses (see `GUIDE.md`).
+All in-game art is **drawn procedurally on canvas** (HD illustrated shapes defined in code — gradients,
+soft shading and shadows) and all audio is **synthesised at runtime** — there are no third-party image,
+font, or sound assets to attribute. UI chrome uses a rounded **system font stack**. If you add real
+sprites or sound, record their licenses (see `GUIDE.md`).

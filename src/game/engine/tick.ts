@@ -3,6 +3,7 @@
  * offline-progress engine: call tick(state, Date.now()) on load and earnings settle exactly.
  */
 import type { CargoJob, GameState, TownId, TrainId } from '../model/types'
+import { regenFuel } from './trains'
 
 /** A single train arrival settled during a tick (feeds the "welcome back" summary). */
 export interface Arrival {
@@ -25,8 +26,12 @@ export interface TickResult {
 export function tick(state: GameState, nowMs: number): TickResult {
   const arrivals: Arrival[] = []
   let coinsGained = 0
+  const dt = Math.max(0, nowMs - state.lastSeenMs)
 
-  const trains = state.trains.map((train) => {
+  const trains = state.trains.map((train0) => {
+    // Passive fuel regen for every train, based on real elapsed time (so offline refuels too).
+    const train = regenFuel(train0, dt)
+
     if (train.location.type !== 'en-route' || nowMs < train.location.arriveAtMs) {
       return train
     }

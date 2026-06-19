@@ -75,6 +75,18 @@ export interface Train {
   /** Cargo currently loaded (length <= carSlots). */
   cars: CargoJob[]
   location: TrainLocation
+  /** Current fuel (litres / kg of coal). Regenerates passively over time. */
+  fuel: number
+  /** Maximum fuel the loco + its attached fuel carts can hold. */
+  fuelCapacity: number
+  /** Wear as a percentage, 0..100 (100 = fully broken). */
+  damagePct: number
+  /** Purchase value in coins; the repair cost is derived from this. */
+  value: number
+  /** Extra fuel carts currently attached (each lifts fuelCapacity). */
+  fuelCarts: number
+  /** Maximum extra fuel carts that can be attached. */
+  fuelCartSlots: number
 }
 
 /** The full, serializable game state. */
@@ -90,7 +102,7 @@ export interface GameState {
 }
 
 /** Current save schema version. Bump when the shape of GameState changes. */
-export const SAVE_VERSION = 1
+export const SAVE_VERSION = 2
 
 /** Relative value multiplier per cargo kind, used by the payout formula. */
 export const CARGO_VALUE: Record<CargoKind, number> = {

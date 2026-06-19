@@ -1,11 +1,18 @@
 :root {
   --cozy-cream: #fdf6e3;
-  --cozy-ink: #2c3e2e;
+  --cozy-ink: #2b2535;
   --cozy-green: #6b9e78;
   --cozy-green-dark: #4f7d5c;
   --cozy-amber: #e9b44c;
   --cozy-card: #fffdf7;
-  --cozy-border: #d8cfb8;
+  --cozy-border: #e4dcc6;
+  /* HD cozy theme */
+  --round: ui-rounded, 'SF Pro Rounded', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --ink: #2b2535;
+  --ink-soft: #7c7689;
+  --shadow-soft: 0 6px 18px rgba(45, 38, 60, 0.16);
+  --shadow-card: 0 10px 30px rgba(45, 38, 60, 0.22);
+  --radius: 16px;
   color-scheme: light;
 }
 
@@ -21,12 +28,7 @@ body,
 }
 
 body {
-  font-family:
-    system-ui,
-    -apple-system,
-    'Segoe UI',
-    Roboto,
-    sans-serif;
+  font-family: var(--round);
   color: var(--cozy-ink);
   background: var(--cozy-cream);
   -webkit-font-smoothing: antialiased;
@@ -44,7 +46,8 @@ button {
 /* UI chrome shouldn't be text-selectable on tap; the canvas/labels stay clean too. */
 .app,
 .hud,
-.dock,
+.menu,
+.sheet,
 button,
 label {
   user-select: none;

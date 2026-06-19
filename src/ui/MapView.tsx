@@ -1,6 +1,6 @@
 /** Canvas map view: paints the world each animation frame and reports town taps. */
 import { useEffect, useRef, type ReactNode } from 'react'
-import { drawMap, makeCamera, pickTown } from '../render/map'
+import { drawMap, pickTown, viewTransform } from '../render/map'
 import { useAnimationClock, useGame } from './gameContext'
 
 export function MapView({
@@ -10,7 +10,7 @@ export function MapView({
   selectedId: string | null
   onSelect: (townId: string) => void
 }): ReactNode {
-  const { state } = useGame()
+  const { state, effects } = useGame()
   const now = useAnimationClock()
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const sizeRef = useRef({ w: 0, h: 0 })
@@ -34,8 +34,8 @@ export function MapView({
       canvas.height = pxH
     }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-    drawMap(ctx, state, now, w, h, selectedId)
-  }, [now, state, selectedId])
+    drawMap(ctx, state, now, w, h, selectedId, effects)
+  }, [now, state, selectedId, effects])
 
   const handleClick = (e: React.MouseEvent<HTMLCanvasElement>): void => {
     const canvas = canvasRef.current
@@ -44,8 +44,8 @@ export function MapView({
     const sx = e.clientX - rect.left
     const sy = e.clientY - rect.top
     const { w, h } = sizeRef.current
-    const cam = makeCamera(state, w, h)
-    const town = pickTown(state, cam, sx, sy)
+    const { cssCam } = viewTransform(state, w, h)
+    const town = pickTown(state, cssCam, sx, sy)
     if (town) onSelect(town.id)
   }
 

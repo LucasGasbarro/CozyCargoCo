@@ -15,6 +15,12 @@ export function makeState(overrides: Partial<GameState> = {}): GameState {
     carSlots: 3,
     cars: [],
     location: { type: 'at-town', town: 'A' },
+    fuel: 40,
+    fuelCapacity: 40,
+    damagePct: 0,
+    value: 120,
+    fuelCarts: 0,
+    fuelCartSlots: 2,
   }
 
   return {

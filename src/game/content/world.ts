@@ -65,6 +65,12 @@ interface TrainSeed {
   speedUnitsPerMs: number
   carSlots: number
   startTown: TownId
+  fuelCapacity: number
+  /** Fuel the train starts a fresh game with (<= fuelCapacity). */
+  fuel: number
+  damagePct: number
+  value: number
+  fuelCartSlots: number
 }
 
 /** Two gentle starter locomotives, both parked at Ashford. */
@@ -76,6 +82,11 @@ const TRAIN_SEEDS: TrainSeed[] = [
     speedUnitsPerMs: 0.0016,
     carSlots: 2,
     startTown: 'ashford',
+    fuelCapacity: 40,
+    fuel: 22,
+    damagePct: 10,
+    value: 120,
+    fuelCartSlots: 2,
   },
   {
     id: 'hopper',
@@ -84,6 +95,11 @@ const TRAIN_SEEDS: TrainSeed[] = [
     speedUnitsPerMs: 0.0024,
     carSlots: 3,
     startTown: 'ashford',
+    fuelCapacity: 60,
+    fuel: 60,
+    damagePct: 0,
+    value: 220,
+    fuelCartSlots: 3,
   },
 ]
 
@@ -129,6 +145,12 @@ export function createNewGame(nowMs: number, seed: number = nowMs >>> 0): GameSt
     carSlots: s.carSlots,
     cars: [],
     location: { type: 'at-town', town: s.startTown },
+    fuel: s.fuel,
+    fuelCapacity: s.fuelCapacity,
+    damagePct: s.damagePct,
+    value: s.value,
+    fuelCarts: 0,
+    fuelCartSlots: s.fuelCartSlots,
   }))
 
   return {

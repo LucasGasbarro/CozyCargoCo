@@ -15,7 +15,7 @@
  */
 window.KANBAN_META = {
   project: "Cozy Cargo Co. — MVP",
-  updatedAt: "2026-06-19T13:10:00-03:00",
+  updatedAt: "2026-06-19T16:20:00-03:00",
 };
 
 window.KANBAN_TASKS = [
@@ -118,7 +118,42 @@ window.KANBAN_TASKS = [
     description: "Resolve issues found in QA; no crashes/console errors in core loop." },
   { id: "ship-deploy", title: "Deploy to static hosting", milestone: "M10 · QA & Ship", status: "done", etaMinutes: 30, startedAt: "2026-06-19T13:05:00-03:00",
     description: "Build and deploy the PWA to Netlify/Vercel/GitHub Pages." },
+
+  // ── M11 · Visual Overhaul (Pixel-Art Retro) ───────────────────
+  { id: "px-foundation", title: "Pixel rendering foundation", milestone: "M11 · Visual Overhaul", status: "done", etaMinutes: 40, startedAt: "2026-06-19T13:42:00-03:00",
+    description: "Low-res offscreen buffer, integer upscale, imageSmoothing off, sprite drawing system (pixel bitmaps + palette)." },
+  { id: "px-sprites", title: "Sprite library", milestone: "M11 · Visual Overhaul", status: "done", etaMinutes: 60, startedAt: "2026-06-19T13:42:00-03:00",
+    description: "Procedural pixel sprites: locomotive (per kind) + cargo cars, station depot (unlocked/locked), trees & decorations." },
+  { id: "px-world", title: "Tile-based world", milestone: "M11 · Visual Overhaul", status: "done", etaMinutes: 45, startedAt: "2026-06-19T13:42:00-03:00",
+    description: "Deterministic grass/water/forest tilemap behind the network; cohesive retro palette; stable across frames." },
+  { id: "px-track", title: "Pixel track & rails", milestone: "M11 · Visual Overhaul", status: "done", etaMinutes: 30, startedAt: "2026-06-19T13:42:00-03:00",
+    description: "Chunky rails + sleepers between towns in pixel style, sitting in the world (keeps the connection lines the user likes)." },
+  { id: "px-train", title: "Animated locomotive", milestone: "M11 · Visual Overhaul", status: "done", etaMinutes: 45, startedAt: "2026-06-19T13:42:00-03:00",
+    description: "Train faces travel direction, gentle bob, chimney smoke puffs while en route (keeps the visible travel the user likes)." },
+  { id: "px-effects", title: "Juice & effects", milestone: "M11 · Visual Overhaul", status: "done", etaMinutes: 35, startedAt: "2026-06-19T13:42:00-03:00",
+    description: "Coin '+$' pop on delivery, sparkle on town unlock, job indicator bubbles above stations." },
+  { id: "px-ui", title: "Retro UI chrome", milestone: "M11 · Visual Overhaul", status: "done", etaMinutes: 50, startedAt: "2026-06-19T14:05:00-03:00",
+    description: "Pixel display font (Press Start 2P, OFL) for HUD/titles/buttons, chunky bordered panels, retro palette, button press feedback." },
+  { id: "px-qa", title: "QA + responsive + commit", milestone: "M11 · Visual Overhaul", status: "done", etaMinutes: 30, startedAt: "2026-06-19T14:20:00-03:00",
+    description: "Lint, tests, verify crisp pixels on mobile + desktop viewports, no perf regressions; commit & push." },
+
+  // ── M12 · HD Glow-up + Train Systems + Bottom-Menu UX ─────────
+  { id: "hd-renderer", title: "HD illustrated renderer", milestone: "M12 · HD Glow-up", status: "done", etaMinutes: 90, startedAt: "2026-06-19T15:00:00-03:00",
+    description: "Rewrite render/map.ts: full-res, imageSmoothing on, gradients/soft shading/shadows/vignette; rounded stations, soft track, gradient locos + tinted cars + radial smoke. Drop the pixel sprite system." },
+  { id: "hd-trainsys", title: "Train fuel/damage systems (engine)", milestone: "M12 · HD Glow-up", status: "done", etaMinutes: 60, startedAt: "2026-06-19T15:00:00-03:00",
+    description: "New engine/trains.ts: fuel (+1/sec passive regen + 100-coin Fill), damage % + paid Repair (ceil(value*0.2*dmg%/100)), cargo/fuel-cart stats. Dispatch burns fuel + adds wear. New Train fields; SAVE_VERSION 1→2; tests." },
+  { id: "hd-fullscreen", title: "Full-screen map + bottom menu", milestone: "M12 · HD Glow-up", status: "done", etaMinutes: 50, startedAt: "2026-06-19T15:30:00-03:00",
+    description: "Map fills the viewport; floating top HUD (coins/mute/reset); bottom menu bar with Jobs / Station / Train. Reusable bottom-Sheet wrapper; tapping a town opens the Jobs sheet." },
+  { id: "hd-trainsheet", title: "Train stats sheet", milestone: "M12 · HD Glow-up", status: "done", etaMinutes: 40, startedAt: "2026-06-19T15:30:00-03:00",
+    description: "Per-train popup: fuel meter + live time-to-full, Fill button; damage meter + Repair button (with cost); cargo + fuel-cart stats. Wire refuel/repair store actions." },
+  { id: "hd-theme", title: "HD cozy UI theme", milestone: "M12 · HD Glow-up", status: "done", etaMinutes: 40, startedAt: "2026-06-19T15:50:00-03:00",
+    description: "Rewrite index.css tokens + App.css: rounded HD chrome, system rounded font (drop Press Start 2P), soft shadows, sheet/menu/card styling." },
+  { id: "hd-qa", title: "QA + build + docs + commit", milestone: "M12 · HD Glow-up", status: "done", etaMinutes: 40, startedAt: "2026-06-19T16:05:00-03:00",
+    description: "Typecheck/lint/57 tests, prod build (default + BASE_PATH), browser screenshot QA, update BasePrompt/README/GUIDE/Kanban; commit & push." },
 ];
+
+
+
 
 
 

@@ -5,6 +5,7 @@
 import { createContext, useContext, useEffect, useRef, useState } from 'react'
 import type { GameState, JobId, TownId, TrainId } from '../game/model/types'
 import type { Arrival } from '../game/engine'
+import type { MapEffect } from '../render/map'
 
 export interface GameStore {
   state: GameState
@@ -12,8 +13,14 @@ export interface GameStore {
   now: number
   /** Offline arrivals to show in the welcome-back summary, or null when dismissed. */
   welcome: Arrival[] | null
+  /** Transient visual juice (coin pops on delivery, unlock sparkles) for the renderer. */
+  effects: MapEffect[]
   dispatch(trainId: TrainId, jobIds: readonly JobId[], destination: TownId): string | null
   unlock(townId: TownId): string | null
+  /** Pay to instantly fill a train's fuel. Returns an error string or null on success. */
+  refuel(trainId: TrainId): string | null
+  /** Pay to fully repair a train. Returns an error string or null on success. */
+  repair(trainId: TrainId): string | null
   dismissWelcome(): void
   reset(): void
   canDispatch(trainId: TrainId, jobIds: readonly JobId[], destination: TownId): boolean

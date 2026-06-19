@@ -10,9 +10,11 @@ import { playClick } from '../audio/sfx'
 export function TownPanel({
   townId,
   onClose,
+  hideHeader = false,
 }: {
   townId: string
   onClose: () => void
+  hideHeader?: boolean
 }): ReactNode {
   const { state, dispatch, unlock, canDispatch } = useGame()
   const town = state.towns.find((t) => t.id === townId)
@@ -29,7 +31,7 @@ export function TownPanel({
     const affordable = cost !== null && state.coins >= cost
     return (
       <section className="panel">
-        <PanelHeader title={`${town.name} 🔒`} onClose={onClose} />
+        {!hideHeader && <PanelHeader title={`${town.name} 🔒`} onClose={onClose} />}
         <p className="panel-hint">A sleepy town waiting to join your network.</p>
         {cost === null ? (
           <p className="panel-hint">Build out a nearby line first to reach it.</p>
@@ -84,7 +86,7 @@ export function TownPanel({
 
   return (
     <section className="panel">
-      <PanelHeader title={town.name} onClose={onClose} />
+      {!hideHeader && <PanelHeader title={town.name} onClose={onClose} />}
 
       <h3 className="panel-section">Trains here</h3>
       {idleHere.length === 0 ? (

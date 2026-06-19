@@ -4,6 +4,8 @@
  */
 import type { GameState, JobId, TownId, Train, TrainId, TrackSegment } from '../model/types'
 import { travelTimeMs } from './economy'
+import { FUEL_PER_UNIT, WEAR_PER_TRIP } from './trains'
+import { clamp } from '../util'
 
 export function findTown(state: GameState, id: TownId) {
   return state.towns.find((t) => t.id === id)
@@ -112,6 +114,9 @@ export function dispatchTrain(
       ? {
           ...t,
           cars: [...t.cars, ...loaded],
+          // The trip burns fuel by distance and adds a little wear (both tunable in trains.ts).
+          fuel: clamp(t.fuel - seg.lengthUnits * FUEL_PER_UNIT, 0, t.fuelCapacity),
+          damagePct: clamp(t.damagePct + WEAR_PER_TRIP, 0, 100),
           location: {
             type: 'en-route' as const,
             from: here,
